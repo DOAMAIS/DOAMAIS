@@ -1,0 +1,10 @@
+@charset "UTF-8"
+
+/* formatação da barra de navegação */
+  nav#menu ul {
+  	 list-style: none;
+  	
+
+
+
+  }

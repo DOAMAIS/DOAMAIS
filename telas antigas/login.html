@@ -1,0 +1,189 @@
+<html>
+
+<head>
+  <title>Login da porra</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="css.css">
+  <link rel="stylesheet" href="../../login.css" type="text/css">
+  <style type="text/css">
+    body {
+      background: url("https://ak5.picdn.net/shutterstock/videos/397219/thumb/1.jpg") no-repeat center center fixed;
+      -o-background-size: cover;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      background-size: cover;
+    }
+
+    #email_usuario {
+      border-style: hidden;
+      background-color: #FFFFFF;
+      background-size: 30px;
+      width: 300px;
+      height: 32px;
+      display: inline-block;
+      vertical-align: middle;
+      box-sizing: border-box;
+      margin-bottom: 6px;
+      margin-top: 6px;
+    }
+
+    #senha_usuario {
+      border-style: hidden;
+      background-color: #FFFFFF;
+      background-size: 30px;
+      width: 300px;
+      height: 32px;
+      display: inline-block;
+      vertical-align: middle;
+      box-sizing: border-box;
+      margin-bottom: 6px;
+      margin-top: 6px;
+    }
+
+    #menu {
+      margin-bottom: 15px;
+    }
+
+    #card {
+      max-width: 350px;
+      padding: 40px 40px;
+      background-color: #F7F7F7;
+      /* just in case there no content*/
+      padding: 20px 25px 30px;
+      margin: 0 auto 25px;
+      margin-top: 100px;
+      /* shadows and rounded borders */
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+      border-radius: 5px;
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    img {
+      border-radius: 50%;
+      width: 190px;
+      height: auto;
+      margin-right: auto !important;
+      margin-left: auto !important;
+      flex: 1 1 auto;
+      padding: 1.25rem;
+      height: 190px !important;
+      display: block;
+    }
+
+    form {
+      text-align: center;
+    }
+
+    .q {
+      width: 400px;
+      background-color: #F1F1F1;
+      border: 1px solid gray;
+    }
+
+    #my {
+      border-radius: 5px 0 0 5px/5px 0 0 5px;
+      background: url(http://findicons.com/files/icons/42/basic/64/user.png) no-repeat center center;
+      background-size: 20px;
+      width: 50px;
+      height: 32px;
+      display: inline-block;
+      vertical-align: middle;
+      box-sizing: border-box;
+    }
+
+    #my1 {
+      border-radius: 5px 0px 0px 5px/5px 0 0 5px;
+      background: url(http://findicons.com/files/icons/2771/batch/64/asterisk.png) no-repeat center center;
+      background-size: 20px;
+      width: 50px;
+      height: 32px;
+      display: inline-block;
+      vertical-align: middle;
+      box-sizing: border-box;
+    }
+
+    #my2 {
+      border-radius: 5px 0px 0px 5px/5px 0 0 5px;
+      background: url(desg.jpg) no-repeat center center;
+      background-size: 20px;
+      width: 50px;
+      height: 32px;
+      display: inline-block;
+      vertical-align: middle;
+      box-sizing: border-box;
+    }
+
+    #my3 {
+      border-radius: 5px 0px 0px 5px/5px 0 0 5px;
+      background: url(desg1.jpg) no-repeat center center;
+      background-size: 20px;
+      width: 50px;
+      height: 32px;
+      display: inline-block;
+      vertical-align: middle;
+      box-sizing: border-box;
+    }
+
+    #my4 {
+      border-radius: 1px 0px 0px 1px;
+      background: url(abc1.jpg) no-repeat center center;
+      background-size: 20px;
+      width: 50px;
+      height: 32px;
+      display: inline-block;
+      vertical-align: middle;
+      box-sizing: border-box;
+    }
+
+    button.botao {
+      width: 190px;
+      background-color: #AF0000;
+      color: #FFFFFF;
+    }
+
+    button:hover {
+      background-color: #8F0000;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md text-center fixed-top bg-success w-100 p-1 navbar-inverse text-uppercase" id="menu">
+    <div class="container">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+      <div class="collapse navbar-collapse text-center justify-content-center" id="navbar2SupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Página Inicial <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Cadastre-se</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Quem somos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div id="card">
+    <h2 style="color: #5cb85c; text-align: center;">Login</h2>
+    <img src="IMG-20170711-WA0004.jpg">
+    <form action="int.php" method="POST">
+      <input name="email" placeholder="Email" required="" id="email_usuario">
+      <br>
+      <input placeholder="Senha" name="senha" required="" type="password" id="senha_usuario">
+      <br>
+      <br>
+      <button class="btn botao" id="botao"><b>Enviar</b></button>
+    </form>
+  </div>
+</body>
+
+</html>

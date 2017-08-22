@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Cadastre-se</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://pingendo.github.io/templates/blank/theme.css" type="text/css"/>
+  	<style>
+		body,html{
+	         background: url("https://ak5.picdn.net/shutterstock/videos/397219/thumb/1.jpg") no-repeat center center fixed;
+			 -o-background-size: cover;
+			 -webkit-background-size: cover;
+			 -moz-background-size: cover;
+			 background-size: cover;
+		}
+		input{
+			border-radius: 0px 5px 5px 0px/0px 5px 5px 0px;
+		}
+		#card{
+			     max-width: 350px;
+                padding: 40px 40px;
+			     background-color: #F7F7F7;
+                /* just in case there no content*/
+                padding: 20px 25px 30px;
+                margin: 0 auto 25px;
+                margin-top: 50px;
+                /* shadows and rounded borders */
+                -moz-border-radius: 2px;
+                -webkit-border-radius: 2px;
+                border-radius: 5px;
+                -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+		}
+		img{
+			border-radius: 50%;
+			width: 190px;
+			height: auto;
+			margin-right: auto !important;
+			margin-left: auto !important;
+			flex: 1 1 auto;
+            padding: 1.25rem;
+			height: 190px !important;
+			display: block;
+		}
+		form{
+			text-align: center;
+			}
+			.q{
+			  width: 400px;
+			  background-color: #F1F1F1;
+			  border:1px solid gray;
+			}
+		#my{
+			border-radius: 5px 0 0 5px/5px 0 0 5px;
+			background: url(http://findicons.com/files/icons/42/basic/64/user.png) no-repeat center center;
+			background-size: 20px;
+			width: 50px;
+			height: 32px;
+			display: inline-block;
+			vertical-align: middle;
+			box-sizing: border-box;
+		}
+		#my1{
+			border-radius: 5px 0px 0px 5px/5px 0 0 5px;
+			background: url(http://findicons.com/files/icons/2771/batch/64/asterisk.png) no-repeat center center;
+			background-size: 20px;
+			width: 50px;
+			height: 32px;
+			display: inline-block;
+			vertical-align: middle;
+			box-sizing: border-box;
+		}
+		#my2{
+			border-radius: 5px 0px 0px 5px/5px 0 0 5px;
+			background: url(desg.jpg) no-repeat center center;
+			background-size: 20px;
+			width: 50px;
+			height: 32px;
+			display: inline-block;
+			vertical-align: middle;
+			box-sizing: border-box;
+		}
+		#my3{
+		border-radius: 5px 0px 0px 5px/5px 0 0 5px;
+			background: url(desg1.jpg) no-repeat center center;
+			background-size: 20px;
+			width: 50px;
+			height: 32px;
+			display: inline-block;
+			vertical-align: middle;
+			box-sizing: border-box;
+		}
+		#my4{
+			border-radius: 5px 0px 0px 5px/5px 0 0 5px;
+			background: url(abc1.jpg) no-repeat center center;
+			background-size: 20px;
+			width: 50px;
+			height: 32px;
+			display: inline-block;
+			vertical-align: middle;
+			box-sizing: border-box;
+		}
+		button.botao{ 
+			width:190px; 
+			background-color: #AF0000
+		 	
+		}
+		b{
+			color: white;
+			width: 150px;
+		}
+		button:hover{
+			 background-color: 	#8F0000;
+		}
+	</style>
+</head>
+
+
+<body>
+
+  <div id="card">
+  <h2 style="color: #5cb85c; text-align: center;" >Cadastro</h2>
+    <img src="IMG-20170711-WA0004.jpg">
+
+    <form action="../php/ler_cadastro_op.php" method="POST">
+		<i id="my" class="q"></i>
+        <input name="nome" placeholder="Nome" required />
+        <br>
+		<i id="my1" class="q"></i>
+		<input name="senha" type="password" maxlength="10" placeholder="Senha" required />
+		<br>
+		<i id="my2" class="q"></i>
+		<input name="email" placeholder="Email" required />
+		<br>
+		<i id="my3" class="q"></i>
+		<input name="endereco" placeholder="Endereço"/>
+		<br>
+		<i id="my4" class="q"></i>
+		<input type="date" name="Nascimento" placeholder="Nascimento"> <br/>
+		
+			<select name="sangue">
+				<option>Selecione o tipo sanguíneo</option>
+				<option>A+</option>
+				<option>A-</option>
+				<option>B+</option>
+				<option>B-</option>
+				<option>O+</option>
+				<option>O-</option>
+				<option>AB+</option>
+				<option>AB-</option>
+			</select>
+		<br/>
+		
+			<label style="color: #5a5a5a;" for="doa">Doador</label><input type="radio" name="tipoUs" value="D" id="doa"/>
+			<label for="rec">Receptor</label><input type="radio" name="tipoUs" value="R" id="rec"/><br/>
+	
+		<button class="btn botao"><b>Enviar</b></button>	
+	</form>
+  </div>
+</body>
+
+</html>

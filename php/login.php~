@@ -1,0 +1,17 @@
+<?php
+	$senha = md5($_POST["senha"]);
+	$email = $_POST["email"];
+    var_dump($_POST);
+
+	try{
+	$conexao = new PDO('mysql:host=localhost;dbname=DOAMAIS', 'root', '@luno1fpe');
+	$stmt= $conexao->prepare("select * from usuario where email=? and senha=?");
+	    $stmt->bindValue(1, $senha);
+	    $stmt->bindValue(2, $email);
+		$stmt->execute();
+	}catch(PDOException $e){
+	 echo $e->getMessage();
+	}
+
+
+?>

@@ -1,0 +1,11 @@
+@charset "UTF-8"
+
+/* formatação da barra de navegação */
+  nav#menu ul {
+  	 list-style: none;
+  	 color: #f4f4f4;
+  	 text-align: center;
+
+
+
+  }
