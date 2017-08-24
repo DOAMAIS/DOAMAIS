@@ -5,18 +5,29 @@
 	$tipo_sanguineo = $_POST["sangue"];
 	$nascimento = $_POST["Nascimento"];
 	$tipoUs = $_POST["tipoUs"];
-    var_dump($_POST);
+	$foto = $_FILES["foto"]["tmp_name"];
+	
+	//var_dump($_FILES);
+    //var_dump($_POST);
+      if($_FILES["foto"]["type"] == "image/jpeg" || $_FILES["foto"]["type"] == "image/jpg"){
+      	$foto = $_POST["nome"].".jpg";
+      }else{
+      	$foto = $_POST["nome"].".png";
+      }
+
+      define('DEST','/var/www/html/photos/'.$foto);
+      move_uploaded_file($_FILES["foto"]["tmp_name"], DEST);
 	try{
 	$conexao = new PDO('mysql:host=localhost;dbname=DOAMAIS', 'root', '@luno1fpe');
-	$stmt= $conexao->prepare("insert into usuario(nome,senha,email,tipo_sanguineo,tipo_usuario) values(?,?,?,?,?)");
+	$stmt= $conexao->prepare("insert into usuario(nome,senha,email,tipo_sanguineo,tipo_usuario,foto) values(?,?,?,?,?,?)");
 		$stmt->bindValue(1, $nome);
 	    $stmt->bindValue(2, $senha);
 	    $stmt->bindValue(3, $email);
 	    $stmt->bindValue(4, $tipo_sanguineo);
 	    $stmt->bindValue(5, $tipoUs);
+	    $stmt->bindValue(6, $foto);
 		$stmt->execute();
 
-		//header('Location: login.php'); 
 	}catch(PDOException $e){
 	 echo $e->getMessage();
 	}
