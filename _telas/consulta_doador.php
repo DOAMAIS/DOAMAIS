@@ -1,3 +1,4 @@
+
 <html>
 
 <head>
@@ -11,7 +12,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">  
 	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<link href="css/styles.css" rel="stylesheet"> 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+  <script src="ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/scripts.js"></script>
 </head>
@@ -63,55 +64,98 @@
       padding: 5px 10px 5px 10px;
       border-radius: 27px;
     }
+    th {
+  
+    color: ;
+     }
   </style>
 
   <!-- grid da página inteira -->
   <div class="column col-sm-12 col-xs-11" id="main">
 
     <!-- barra de navegação -->
-  <div class="navbar navbar navbar-static-top" id="nav_cor">
-    <div class="navbar-header" id="nav_cor">
-      <img src="pica.png" id="imagem_logo">
+    <div class="navbar navbar navbar-static-top" id="nav_cor">
+      <div class="navbar-header" id="nav_cor">
+<span class="icon-bar "></span> <span class="icon-bar"></span> <span class="icon-bar"></span> 
 
-      <ul class="nav navbar-nav">
-        <li>
-          <a href="index.php"> Página Inicial</a>
-        </li>
-      </ul>
-      
-      <ul class="nav navbar-nav navbar">
-        <li class="dropdown">
-          <a href="consulta_doador.php"> Consultar doador </a>
-        </li>
-      </ul>
-    </div>        
-  </div>
-  <!-- /barra de navegação -->
-  <!-- conteudo -->
+            <img src="pica.png" id="imagem_logo">
+            </div>
+            
+              <ul class="nav navbar-nav">
+                <li>
+                  <a href="index.php"> Página Inicial</a>
+                </li>
+              </ul>
+              
+            </nav>
+    </div>
+    <!-- /barra de navegação -->
     <div class="container">
      <div class="panel panel-default"> 
         <div class="panel-heading">
           <h1>Pesquise aqui um doador</h1>
-           <form action="result_doador.php" method="POS">       
+           <form action="consulta_doador.php" method="GET">       
           <div class="panel-body">
-            <select name="sangue">
-              <option value="null">Procurar pelo tipo sanguíneo:</option>
-              <option>A+</option>
-              <option>A-</option>
-              <option>B+</option>
-              <option>B-</option>
-              <option>AB+</option>
-              <option>AB-</option>
-              <option>O+</option>
-              <option>O-</option>
+            <select name="tipo_sanguineo" id="tipo_sanguineo">
+              <option value="null">Selecione o tipo sanguineo:</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
             </select><br><br>
             <button>Pesquisar</button>
-            </form>
+      
+            
           </div>
         </div>
       </div>
     </div>
     <!-- /grid da página inteira -->
+             <table width=100% >
+            <tr>
+            <th width=10% align="center">Nome</th>
+            <th width=10% align="center">Email</th>
+            </tr>
+            </table>  
+                  <?php
+                
+
+                 include '../../conexao.php'; 
+                 if (isset($_GET["tipo_sanguineo"])){
+                  $tipo_sanguineo= $_GET["tipo_sanguineo"];
+                  $stmt = $conexao->prepare("select nome,email from usuario where tipo_sanguineo=?"); 
+                  
+                  
+                  $stmt->bindValue(1,$tipo_sanguineo);
+                  $stmt->execute();
+                  $resultado = $stmt->fetchAll();
+                  }else{
+                    echo "Nenhum doador encontrado";
+                  }
+                        ?>
+       
+          <?php
+               
+                foreach($resultado as $linha){
+                  ?> 
+
+                  <table width=100% >
+                  
+                   <tr> 
+                  
+                      <td width=10%  align="center"><p><?php echo $linha['nome']; ?> </p></td>
+                      <td width=10%  align="center"><p><?php echo $linha['email']; ?> </p></td>
+                    
+
+                    </tr>
+              
+                </table> 
+                <?php   }  ?>
+                 </form>    
   </div>
 </body>
 </html>
