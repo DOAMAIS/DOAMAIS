@@ -1,4 +1,5 @@
 
+
 <html>
 
 <head>
@@ -15,6 +16,11 @@
   <script src="ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/scripts.js"></script>
+  <script type="text/javascript">
+    function mostra(){
+      document.getElementsByTagname("table").style.display = "block";
+    }
+  </script>
 </head>
 
 <body>
@@ -64,9 +70,16 @@
       padding: 5px 10px 5px 10px;
       border-radius: 27px;
     }
-    th {
-  
-    color: ;
+    table{
+      margin: 0 auto;
+      display: ;
+    }
+    table,th,tr,td{
+      border-collapse: collapse;
+       border: 1px solid red;
+       width: ;
+       text-align: center;
+       background-color: white;
      }
   </style>
 
@@ -107,55 +120,51 @@
               <option value="O+">O+</option>
               <option value="O-">O-</option>
             </select><br><br>
-            <button>Pesquisar</button>
+            <button onload="">Pesquisar</button>
       
-            
+           </form>
+
           </div>
         </div>
       </div>
     </div>
     <!-- /grid da página inteira -->
-             <table width=100% >
-            <tr>
-            <th width=10% align="center">Nome</th>
-            <th width=10% align="center">Email</th>
-            </tr>
-            </table>  
+            <table width="70%">
+              <tr>
+                <th>Nome</th>
+                <th>Email</th>
+              </tr>
+           
                   <?php
                 
-
-                 include '../../conexao.php'; 
-                 if (isset($_GET["tipo_sanguineo"])){
-                  $tipo_sanguineo= $_GET["tipo_sanguineo"];
-                  $stmt = $conexao->prepare("select nome,email from usuario where tipo_sanguineo=?"); 
-                  
-                  
-                  $stmt->bindValue(1,$tipo_sanguineo);
+                 include 'conexao.php'; 
+                 $tipo_sanguineo= $_GET["tipo_sanguineo"];
+                 $stmt = $conexao->prepare("select nome,email from usuario where tipo_sanguineo=?");  
+                 $stmt->bindValue(1,$tipo_sanguineo);
                   $stmt->execute();
                   $resultado = $stmt->fetchAll();
-                  }else{
-                    echo "Nenhum doador encontrado";
-                  }
+                 
                         ?>
+          
        
           <?php
                
                 foreach($resultado as $linha){
                   ?> 
 
-                  <table width=100% >
+                  
                   
                    <tr> 
                   
-                      <td width=10%  align="center"><p><?php echo $linha['nome']; ?> </p></td>
-                      <td width=10%  align="center"><p><?php echo $linha['email']; ?> </p></td>
+                      <td><?php echo $linha['nome']; ?></td>
+                      <td><?php echo $linha['email']; ?></td>
                     
 
                     </tr>
               
-                </table> 
+                
                 <?php   }  ?>
-                 </form>    
+          </table>     
   </div>
 </body>
 </html>

@@ -1,4 +1,6 @@
 <?php
+	include('../_telas/conexao.php');
+
 	$nome = $_POST["nome"];
 	$senha = password_hash($_POST["senha"], PASSWORD_DEFAULT);
 	$email = $_POST["email"];
@@ -15,10 +17,9 @@
       	$foto = $_POST["nome"].".png";
       }
 
-      define('DEST','/var/www/html/photos/'.$foto);
-      move_uploaded_file($_FILES["foto"]["tmp_name"], DEST);
+      define('DEST', __DIR__."/photos");
+      move_uploaded_file($_FILES["foto"]["tmp_name"], DEST.'/'.$foto);
 	try{
-	$conexao = new PDO('mysql:host=localhost;dbname=DOAMAIS', 'root', '@luno1fpe');
 	$stmt= $conexao->prepare("insert into usuario(nome,senha,email,tipo_sanguineo,tipo_usuario,foto) values(?,?,?,?,?,?)");
 		$stmt->bindValue(1, $nome);
 	    $stmt->bindValue(2, $senha);
@@ -33,16 +34,13 @@
 	}
 ?>
 
-
-
-
 <html>
 
 <head>
   <meta charset="utf-8">
   
   
-  <meta http-equiv="refresh" content="2;URL='login.php'" />    
+  <meta http-equiv="refresh" content="2;URL='login.php'" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="../_css/estilo.css"> 
@@ -108,8 +106,8 @@
   </div>
   <div class="text-center d-flex h-100 align-items-center" style="background-image: url(&quot;../green-gradient-wallpaper-1.jpg&quot;);">
     <div class="container">
-      <div class="row">
-        < <div class="col-sm-4 col-md-4	col-md-4">
+      <div class="row" >
+        < <div class="col-sm-6 col-md-4	col-md-6" align="center">
             <div class="alert alert-success">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                     ×</button>
