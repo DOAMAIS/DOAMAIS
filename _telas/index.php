@@ -1,15 +1,22 @@
 <?php
-                                session_start();
-                                $conexao = new PDO('mysql:host=localhost;dbname=DOAMAIS', 'root', '@luno1fpe');
-                                $stmt= $conexao->prepare("select * from usuario where id=?");                                                                    
+     session_start();
+      $conexao = new PDO('mysql:host=localhost;dbname=DOAMAIS', 'root', '@luno1fpe');
+      $stmt= $conexao->prepare("select * from usuario where id=?");
+      $stmt->bindValue(1, $_SESSION["usuario"]);
+      $stmt->execute();
+      foreach ($stmt as $linha) {
+         $nome = $linha["nome"];
+         $depoimento = $linha["depoimento"];
+         $foto_perfil = $linha["foto"];
+         $tiposanguineo = $linha["tipo_sanguineo"];
+        }
+        $stmt= $conexao->prepare("select * from depoimento where id_usuario=? order by id desc limit 1");                                                                    
                                 $stmt->bindValue(1, $_SESSION["usuario"]);
                                 $stmt->execute();
                                 foreach ($stmt as $linha) {
-                                $nome = $linha["nome"];
-                                $tiposanguineo = $linha["tipo_sanguineo"];
+                                $depoimento = $linha["depoimento"];
                                 }
-                            ?>
-
+?>
 
 <html>
 
@@ -22,11 +29,12 @@
   <meta name="generator" content="Bootply">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link href="css/bootstrap.min.css" rel="stylesheet">  
-	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<link href="css/styles.css" rel="stylesheet"> 
+  <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <link href="css/styles.css" rel="stylesheet"> 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/scripts.js"></script>
+
 </head>
 
 <body>
@@ -34,21 +42,17 @@
     #main {
       background-image: url("../green-gradient-wallpaper-1.jpg");
     }
-
     #nav_cor {
       background-color: #277554;
     }
-
     #botao {
       background-color: #277554;
       width: 90px;
       color: white;
     }
-
     #sidebar {
       background-color: #277554;
     }
-
     #imagem_logo{
       width: 50px;
       height: auto;
@@ -61,27 +65,21 @@
       margin: 0 auto;
       text-align: center;
     }
-
     .profile-header-img {
       padding: 54px;
     }
-
     .profile-header-img > img.img-circle {
       width: 120px;
       height: 120px;
       border: 2px solid #51D2B7;
     }
-
     .profile-header {
       margin-top: 43px;
     }
-
-
     .rank-label-container {
       margin-top: -19px;
       text-align: center;
     }
-
     .label.label-default.rank-label {
       background-color: rgb(81, 210, 183);
       padding: 5px 10px 5px 10px;
@@ -123,7 +121,7 @@
               <div class="profile-header-img">
                 <div class="rank-label-container">  <!-- não consigo tirar essa tag sem quebrar a página *pesquisar sobre* -->
                   <select class="form-control">
-                    <option value="">Selecione o tipo sanguíneo que deseja pesquisar:</option>
+                    <option value="">Selecione o tipo sanguíneo que deseja pesquisar</option>
                     <option value="A+">A+</option>
                     <option value="A-">A-</option>
                     <option value="B+">B+</option>
@@ -162,10 +160,10 @@
               
             <h4>Seu depoimento</h4>
           </div>      
-
-                  <div class="profile-body-img">
+</div>
+                  <div class="panel-body">
                     <div class="pull-right">
-                      <img class="img-circle" src="../logoifpe200.png" />
+                      <img class="img-circle" src="/_telas/photos/<?php echo $foto_perfil; ?>" />
                               <!-- badge -->
                               <div class="rank-label-container">
                                 <span class="label label-default rank-label">Tipo: <?php echo $tiposanguineo;?> </span>
@@ -180,19 +178,12 @@
                             ?></h3>
                         
                       <hr> <?php
-                                session_start();
-                                $conexao = new PDO('mysql:host=localhost;dbname=DOAMAIS', 'root', '@luno1fpe');
-                                $stmt= $conexao->prepare("select * from depoimento where id_usuario=? order by id desc limit 1");                                                                    
-                                $stmt->bindValue(1, $_SESSION["usuario"]);
-                                $stmt->execute();
-                                foreach ($stmt as $linha) {
-                                echo $linha["depoimento"];
-                                }
+                                echo $depoimento;
                             ?>
                       </div>
                       <br> 
 
-                            </div>
+                            
                     </div>
             <!-- /coluna direita ver depoimento recente -->
 
