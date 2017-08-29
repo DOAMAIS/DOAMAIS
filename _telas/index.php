@@ -120,7 +120,8 @@
             <div class="panel-body">
               <div class="profile-header-img">
                 <div class="rank-label-container">  <!-- não consigo tirar essa tag sem quebrar a página *pesquisar sobre* -->
-                  <select class="form-control">
+                <form action="consulta_doador.php" method="GET">
+                  <select name="tipo_sanguineo" class="form-control">
                     <option value="">Selecione o tipo sanguíneo que deseja pesquisar</option>
                     <option value="A+">A+</option>
                     <option value="A-">A-</option>
@@ -131,7 +132,7 @@
                     <option value="O+">O+</option>
                     <option value="O-">O-</option>
                   </select> <br> <br>
-                <button type="submit" class="btn" id="botao">Enviar</button>                     
+                <button type="submit" class="btn" id="botao">Enviar</button> </form>              
               </div>
             </div>
           </div> 
@@ -178,7 +179,11 @@
                             ?></h3>
                         
                       <hr> <?php
+                              if($depoimento!=null)
                                 echo $depoimento;
+                              else
+                                echo "Sem depoimento";
+
                             ?>
                       </div>
                       <br> 
