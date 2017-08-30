@@ -7,22 +7,7 @@
   <link rel="stylesheet" href="../_css/estilo.css">
   <title>Cadastro</title>
 
-<script type="text/javascript">
-  function verificaSenha(){
-      var confSenha = document.getElementById("confSenha");
-
-    if(senha.value!=confSenha.value){
-      alert("As senhas não combinam");
-      confSenha.focus();
-      return false;
-    }
-      return true;
-}
-</script>
-
-</head>
-<body>
-  <style>
+    <style>
     select {
       color: grey;
     }
@@ -71,6 +56,22 @@
     filter: alpha(opacity=0);
     }
   </style>
+
+<script type="text/javascript">
+  function verificaSenha(){
+      var confSenha = document.getElementById("confSenha");
+
+    if(senha.value!=confSenha.value){
+      alert("As senhas não combinam");
+      confSenha.focus();
+      return false;
+    }
+      return true;
+}
+</script>
+
+</head>
+<body>
   <nav class="navbar navbar-expand-md text-center fixed-top  w-100 p-1 navbar-inverse text-uppercase" id="menu">
     <div class="container">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
@@ -115,8 +116,7 @@
               <input type="password" class="form-control" placeholder="Senha" name="senha" id="senha" required> </div>
             <div class="form-campos"> <label class="w-100 text-left m-1"></label>
               <input type="password" class="form-control" placeholder="Confirme a senha" name="senha" id="confSenha" required> </div>
-            <div class="form-campos"> <label class="w-100 text-left m-1"></label>
-              <input type="date" class="form-control" placeholder="Nascimento" name="Nascimento" required> </div>
+           <label class="w-100 text-left m-1"></label>
             <div class="form-tipo"> <label class="w-100 text-left m-1"></label>
            <select name="sangue" required>
               <option value="">Selecione seu tipo sanguíneo</option>
@@ -128,7 +128,7 @@
               <option value="AB-">AB-</option>
               <option value="O+">O+</option>
               <option value="O-">O-</option>
-            </select><br/>
+            </select><br/><label class="w-100 text-left m-1"></label>
               <input type="radio" value="D" name="tipoUs" required><label class="radio">Doador</label>
               &nbsp;
               <input type="radio" value="R" name="tipoUs" required><label class="radio">Receptor</label> </div> 

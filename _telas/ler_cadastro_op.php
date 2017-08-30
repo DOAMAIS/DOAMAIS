@@ -5,7 +5,6 @@
 	$senha = password_hash($_POST["senha"], PASSWORD_DEFAULT);
 	$email = $_POST["email"];
 	$tipo_sanguineo = $_POST["sangue"];
-	$nascimento = $_POST["Nascimento"];
 	$tipoUs = $_POST["tipoUs"];
 	$foto = $_FILES["foto"]["tmp_name"];
 	
