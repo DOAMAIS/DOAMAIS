@@ -1,32 +1,31 @@
-<?php
+<?php 
+	include('../_telas/conexao.php');
 
-    session_start();
+	session_start();
 	$senha = $_POST["senha"];
 	$email = $_POST["email"];
     //var_dump($_POST);
-
 	try{
-	$conexao = new PDO('mysql:host=localhost;dbname=DOAMAIS', 'root', '@luno1fpe');
-	$stmt= $conexao->prepare("select * from usuario where email=? and senha=?");
+	
+	$stmt= $conexao->prepare("select * from usuario where email=?");
 	    $stmt->bindValue(1, $email);
-	    $stmt->bindValue(2, $senha);
 		$stmt->execute();
 		$resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			if(count($resultado) >0){
-				foreach($resultado as $linha){
+		   if(count($resultado) >0){
+			   	foreach($resultado as $linha){
+					$_SESSION['senha'] = $linha['senha'];
 					$_SESSION['usuario'] = $linha['id'];
-    			}
-				header('Location: ../_telas/index.php');
-			}else{
-				$_SESSION['usuario'] = null;
-				header('Location: ../_telas/login.php?msg=true');
-			}
-		
-		
-		
+				}
+				  if(password_verify($senha,$_SESSION['senha'])){
+				  	header('Location: ../_telas/index.php');
+				  }else{
+			   	    header('Location: ../_telas/login.php?msg=true');
+			   }
+		   }else{
+		   	  header('Location: ../telas/login.php?msg=true');
+		   }
+		   
 	}catch(PDOException $e){
 	 echo $e->getMessage();
 	}
-
-
 ?>
