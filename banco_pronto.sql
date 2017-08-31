@@ -1,3 +1,4 @@
+
 create table usuario(
 	id int(4) not null PRIMARY KEY auto_increment,
 	nome varchar(70) not null,
@@ -5,7 +6,7 @@ create table usuario(
 	tipo_sanguineo varchar(3) not null,
 	senha varchar(100) not null,
 	tipo_usuario varchar(1) not null,
-	foto_perfil varchar(20)
+	foto varchar(20)
 );
 create table entidades(
 	id int(4) not null auto_increment primary key,
