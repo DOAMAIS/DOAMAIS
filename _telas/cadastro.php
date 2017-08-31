@@ -107,7 +107,7 @@
             <div class="form-campos"> <label class="w-100 text-left m-1"></label>
             <div class="fileUpload btn" style="background-color:#277554; color: white; width: 220px;">
                <span>Escolha sua foto</span>
-               <input type="file" class="upload" id="foto" name="foto" placeholder="Escolha sua foto" accept="image/*">
+               <input type="file" class="upload" id="arquivo" name="arquivo" placeholder="Escolha sua foto" accept="image/*">
             </div>
               <input type="text" class="form-control" placeholder="Nome" name="nome" required> </div>
             <div class="form-campos"> <label class="text-left w-100 m-1" ></label>
@@ -138,7 +138,7 @@
             <button type="submit" class="btn" id="botao">Cadastrar</button>
             <br>
             <br>
-            <a href="login.php">Já tem conta? Faça login</a>
+            <a href="../_telas/login.php">Já tem conta? Faça login</a>
           </form>
         </div>
       </div>

@@ -159,12 +159,12 @@
             <div class="panel-heading">
               <div class="profile-header-container">
               
-            <h4>Seu depoimento</h4>
-          </div>      
+                <h4>Seu depoimento</h4>
+              </div>      
 </div>
-                  <div class="panel-body">
+                  <div class="well">
                     <div class="pull-right">
-                      <img class="img-circle" src="/_telas/photos/<?php echo $foto_perfil; ?>" />
+                      <img class="img-circle" src="photos/<?php echo $foto_perfil; ?>" />
                               <!-- badge -->
                               <div class="rank-label-container">
                                 <span class="label label-default rank-label">Tipo: <?php echo $tiposanguineo;?> </span>
@@ -177,14 +177,22 @@
                         <h3> <?php
                                 echo $nome;
                             ?></h3>
-                        
-                      <hr> <?php
+                        <div class="well">
+                         
+                           <hr> 
+                           <?php
                               if($depoimento!=null)
                                 echo $depoimento;
                               else
                                 echo "Sem depoimento";
 
                             ?>
+                         
+
+</div>
+
+
+
                       </div>
                       <br> 
 

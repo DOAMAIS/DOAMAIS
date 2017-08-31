@@ -109,7 +109,7 @@
           <h1>Pesquise aqui um doador</h1>
            <form action="consulta_doador.php" method="GET">       
           <div class="panel-body">
-            <select name="tipo_sanguineo" id="tipo_sanguineo">
+            <select name="tipo_sanguineo" id="tipo_sanguineo" class="form-control">
               <option value="null">Selecione o tipo sanguineo:</option>
               <option value="A+">A+</option>
               <option value="A-">A-</option>
@@ -119,17 +119,14 @@
               <option value="AB-">AB-</option>
               <option value="O+">O+</option>
               <option value="O-">O-</option>
-            </select><br><br>
-            <button onload="">Pesquisar</button>
+            </select> &nbsp;
+            <button class="btn" id="botao">Pesquisar</button>
       
            </form>
+<br>
+<br>
 
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /grid da página inteira -->
-            <table width="70%">
+<table width="70%">
               <tr>
                 <th>Nome</th>
                 <th>Email</th>
@@ -164,6 +161,13 @@
                 
                 <?php   }  ?>
           </table>     
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /grid da página inteira -->
+            
   </div>
 </body>
 </html>

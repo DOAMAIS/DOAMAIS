@@ -1,36 +1,40 @@
 <?php
-	include('../_telas/conexao.php');
+  include('../_telas/conexao.php');
 
-	$nome = $_POST["nome"];
-	$senha = password_hash($_POST["senha"], PASSWORD_DEFAULT);
-	$email = $_POST["email"];
-	$tipo_sanguineo = $_POST["sangue"];
-	$tipoUs = $_POST["tipoUs"];
-	$foto = $_FILES["foto"]["tmp_name"];
-	
-	//var_dump($_FILES);
-    //var_dump($_POST);
-      if($_FILES["foto"]["type"] == "image/jpeg" || $_FILES["foto"]["type"] == "image/jpg"){
-      	$foto = $_POST["nome"].".jpg";
-      }else{
-      	$foto = $_POST["nome"].".png";
-      }
+  $nome = $_POST["nome"];
+  $senha = password_hash($_POST["senha"], PASSWORD_DEFAULT);
+  $email = $_POST["email"];
+  $tipo_sanguineo = $_POST["sangue"];
+  $tipoUs = $_POST["tipoUs"];
+  $foto = $_FILES["foto"]["tmp_name"];
 
-      define('DEST', __DIR__."/photos");
-      move_uploaded_file($_FILES["foto"]["tmp_name"], DEST.'/'.$foto);
-	try{
-	$stmt= $conexao->prepare("insert into usuario(nome,senha,email,tipo_sanguineo,tipo_usuario,foto) values(?,?,?,?,?,?)");
-		$stmt->bindValue(1, $nome);
-	    $stmt->bindValue(2, $senha);
-	    $stmt->bindValue(3, $email);
-	    $stmt->bindValue(4, $tipo_sanguineo);
-	    $stmt->bindValue(5, $tipoUs);
-	    $stmt->bindValue(6, $foto);
-		$stmt->execute();
 
-	}catch(PDOException $e){
-	 echo $e->getMessage();
-	}
+ define('DEST_DIR', __DIR__ . '/photos');
+ if (isset($_FILES['arquivo']) && !empty($_FILES['arquivo']['name'])) {
+       $arquivo = $_FILES['arquivo'];
+       if (!move_uploaded_file($arquivo['tmp_name'],
+            DEST_DIR . '/' . $arquivo['name'])){
+                echo "Erro ao enviar arquivo";
+          } else {
+                 $foto = $arquivo['name'];
+                 echo "Sucesso ao enviar arquivo";
+          }
+ }
+
+
+  try{
+  $stmt= $conexao->prepare("insert into usuario(nome,senha,email,tipo_sanguineo,tipo_usuario,foto) values(?,?,?,?,?,?)");
+    $stmt->bindValue(1, $nome);
+      $stmt->bindValue(2, $senha);
+      $stmt->bindValue(3, $email);
+      $stmt->bindValue(4, $tipo_sanguineo);
+      $stmt->bindValue(5, $tipoUs);
+      $stmt->bindValue(6, $foto);
+    $stmt->execute();
+
+  }catch(PDOException $e){
+   echo $e->getMessage();
+  }
 ?>
 
 <html>
@@ -39,7 +43,7 @@
   <meta charset="utf-8">
   
   
-  <meta http-equiv="refresh" content="2;URL='login.php'" />
+  <meta http-equiv="refresh" content="2;URL='../_telas/login.php'" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="../_css/estilo.css"> 
@@ -106,7 +110,8 @@
   <div class="text-center d-flex h-100 align-items-center" style="background-image: url(&quot;../green-gradient-wallpaper-1.jpg&quot;);">
     <div class="container">
       <div class="row" >
-        < <div class="col-sm-6 col-md-4	col-md-6" align="center">
+          <div class="panel panel-default"> 
+        <div class="panel-heading" align="center">
             <div class="alert alert-success">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                     ×</button>
@@ -117,7 +122,8 @@
             </div>
         </div>
         </div>
-      
+    </div>
+
   </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

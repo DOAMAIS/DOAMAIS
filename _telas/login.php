@@ -72,7 +72,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <form action="../php/testelogin.php"  method="POST">
+          <form action="../php/ler_login.php"  method="POST">
           <div id="card">
             <div class="imagem">
               <img src="../logoifpe200.png" class="rounded-circle img-fluid mx-auto d-block"> </div>
