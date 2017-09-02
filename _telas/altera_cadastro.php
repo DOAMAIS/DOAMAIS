@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="../_css/estilo.css">
-  <title>Cadastro</title>
+  <title>Alterar dados</title>
 
     <style>
     select {
@@ -92,12 +92,41 @@ function letras(){
       }
   }
 </script>
+  <?php 
 
+      session_start();
+      include 'conexao.php';
+      $stmt = $conexao->prepare("select * from usuario where id = ?");
+      $stmt->bindValue(1, $_SESSION['usuario']);
+      $stmt->execute();
+        foreach ($stmt as $linha){
+            $nome = $linha['nome'];
+            $email = $linha['email'];
+            $senha;
+            $tipo_sanguineo = $linha["tipo_sanguineo"];
+            $tipoUs = $linha["tipo_usuario"];
+
+        }
+     function select($a,$b){
+        if($a==$b){
+          echo "selected";
+        }
+      }
+     function check($a,$b){
+       if($a==$b){
+         echo "checked";
+      }
+     }
+  if($_SESSION['usuario'] == null){
+     header('Location: inicial.php');
+  }
+
+   ?>
 </head>
 <body>
   <nav class="navbar navbar-expand-md text-center fixed-top  w-100 p-1 navbar-inverse text-uppercase" id="menu">
     <div class="container">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse text-center justify-content-center" id="navbar2SupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item active">
@@ -108,9 +137,6 @@ function letras(){
           </li>
           <li class="nav-item">
             <a class="nav-link" href="quemsomos.php">Quem somos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"></a>
           </li>
         </ul>
       </div>
@@ -123,7 +149,7 @@ function letras(){
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-        <form action="ler_cadastro_op.php" method="POST" enctype="multipart/form-data" onsubmit="return verificaSenha();">
+       <form action="update_cadastro.php" method="POST" enctype="multipart/form-data" onsubmit="return verificaSenha();">
           <div id="card">
             <div class="imagem">
               <img src="../logoifpe200.png" class="rounded-circle img-fluid mx-auto d-block"> </div>
@@ -132,33 +158,33 @@ function letras(){
                <span>Escolha sua foto</span>
                <input type="file" class="upload" id="foto" name="arquivo" placeholder="Escolha sua foto" accept="image/*">
             </div>
-              <input type="text" class="form-control" placeholder="Nome" name="nome" onkeypress="return letras();" required> </div>
+              <input type="text" class="form-control" placeholder="Nome" name="nome" value="<?php echo $nome; ?>" onkeypress="return letras();" required> </div>
             <div class="form-campos"> <label class="text-left w-100 m-1" ></label>
-              <input type="email" class="form-control" placeholder="Email" name="email" required> </div>
+              <input type="email" class="form-control" placeholder="Email" name="email" value="<?php echo $email; ?>" required> </div>
             <div class="form-campos"> <label class="w-100 text-left m-1"></label>
-              <input type="password" class="form-control" placeholder="Senha" name="senha" id="senha" onkeypress="verifySenha();" required> </div>
+              <input type="password" class="form-control" placeholder="Nova senha" name="senha" id="senha" onkeypress="verifySenha();" required> </div>
             <div class="form-campos"> <label class="w-100 text-left m-1" id="senha0"></label>
-              <input type="password" class="form-control" placeholder="Confirme a senha" name="senha" id="confSenha" required> </div>
+              <input type="password" class="form-control" placeholder="Confirme a nova senha" name="senha" id="confSenha" required> </div>
            <label class="w-100 text-left m-1"></label>
             <div class="form-tipo"> <label class="w-100 text-left m-1"></label>
            <select name="sangue" required>
               <option value="">Selecione seu tipo sanguíneo</option>
-              <option value="A+">A+</option>
-              <option value="A-">A-</option>
-              <option value="B+">B+</option>
-              <option value="B-">B-</option>
-              <option value="AB+">AB+</option>
-              <option value="AB-">AB-</option>
-              <option value="O+">O+</option>
-              <option value="O-">O-</option>
+              <option value="A+" <?php select($tipo_sanguineo,"A+"); ?>>A+</option>
+              <option value="A-" <?php select($tipo_sanguineo,"A-"); ?>>A-</option>
+              <option value="B+" <?php select($tipo_sanguineo,"B+"); ?>>B+</option>
+              <option value="B-" <?php select($tipo_sanguineo,"B-"); ?>>B-</option>
+              <option value="AB+" <?php select($tipo_sanguineo,"AB+"); ?>>AB+</option>
+              <option value="AB-" <?php select($tipo_sanguineo,"AB-"); ?>>AB-</option>
+              <option value="O+" <?php select($tipo_sanguineo,"O+"); ?>>O+</option>
+              <option value="O-" <?php select($tipo_sanguineo,"O-"); ?>>O-</option>
             </select><br/><label class="w-100 text-left m-1"></label>
-              <input type="radio" value="D" id="D" name="tipoUs" required><label for="D" class="radio">Doador</label>
+              <input type="radio" value="D" id="D" name="tipoUs" <?php check($tipoUs,"D"); ?> required><label for="D" class="radio">Doador</label>
               &nbsp;
-              <input type="radio" value="R" id="R" name="tipoUs" required><label for="R" class="radio">Receptor</label> </div> 
+              <input type="radio" value="R" id="R" name="tipoUs" <?php check($tipoUs,"R"); ?> required><label for="R" class="radio">Receptor</label> </div> 
           
             <br>
             <br>
-            <button type="submit" class="btn" id="botao">Cadastrar</button>
+            <button type="submit" class="btn" id="botao">ALTERAR</button>
             <br>
             <br>
             <a href="login.php">Já tem conta? Faça login</a>

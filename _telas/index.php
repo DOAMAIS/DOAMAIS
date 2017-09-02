@@ -1,11 +1,14 @@
 <?php
      session_start();
+     if(!isset($_SESSION['usuario'])){
+         header('Location: login.php');
+     }
       $conexao = new PDO('mysql:host=localhost;dbname=DOAMAIS', 'root', '@luno1fpe');
       $stmt= $conexao->prepare("select * from usuario where id=?");
       $stmt->bindValue(1, $_SESSION["usuario"]);
       $stmt->execute();
       foreach ($stmt as $linha) {
-         $nome = $linha["nome"];
+          $nome = $linha["nome"];
          $depoimento = $linha["depoimento"];
          $foto_perfil = $linha["foto"];
          $tiposanguineo = $linha["tipo_sanguineo"];
@@ -97,15 +100,26 @@
     </div>  
     <ul class="nav navbar-nav">
       <li>
-        <a href="index.php"> Página Inicial</a>
+        <a href="index.php">Página Inicial</a>
       </li>
     </ul>
       
     <ul class="nav navbar-nav navbar">
       <li class="dropdown">
-        <a href="consulta_doador.php"> Consultar doador </a>  
+        <a href="consulta_doador.php">Consultar doador</a>  
       </li>
-    </ul>       
+    </ul>
+    <ul class="nav navbar-nav navbar">
+      <li class="dropdown">
+        <a href="altera_cadastro.php">Alterar Dados</a>  
+      </li>
+    </ul> 
+    <label class="w-100 text-left m-1"></label>
+    <ul style="top:5px;" class="nav navbar-nav navbar pull-right">
+      <li class="dropdown">
+        <button class="btn btn-success" for="kk"><a id="kk" href="logout.php">Sair</a></button>
+      </li>
+    </ul>      
   </div>
   <!-- /barra de navegação -->
 
@@ -159,12 +173,12 @@
             <div class="panel-heading">
               <div class="profile-header-container">
               
-                <h4>Seu depoimento</h4>
-              </div>      
+            <h4>Seu depoimento</h4>
+          </div>      
 </div>
-                  <div class="well">
+                  <div class="panel-body">
                     <div class="pull-right">
-                      <img class="img-circle" src="photos/<?php echo $foto_perfil; ?>" />
+                      <img class="img-circle" src="/_telas/photos/<?php echo $foto_perfil; ?>" />
                               <!-- badge -->
                               <div class="rank-label-container">
                                 <span class="label label-default rank-label">Tipo: <?php echo $tiposanguineo;?> </span>
@@ -174,25 +188,17 @@
           
                        
                                
-                        <h3> <?php
+                        <h3><?php
                                 echo $nome;
                             ?></h3>
-                        <div class="well">
-                         
-                           <hr> 
-                           <?php
+                        
+                      <hr> <?php
                               if($depoimento!=null)
                                 echo $depoimento;
                               else
                                 echo "Sem depoimento";
 
                             ?>
-                         
-
-</div>
-
-
-
                       </div>
                       <br> 
 
@@ -200,11 +206,31 @@
                     </div>
             <!-- /coluna direita ver depoimento recente -->
 
-                      <div class="panel panel-default">
+                      <div style="height: 300px; overflow: auto;" class="panel panel-default">
                       <div class="panel-heading">
                       <h4>Depoimentos &amp; Histórias</h4>
                       </div>
                       <div class="panel-body">
+                      <p>
+                        <img src="../logoifpe200.png" class="img-circle pull-right"> </p>
+                      <h3 style="text-align: justify;">Arroz da Silva</h3>
+                      <hr> Nasci em Recife e preciso de sangue!!</div>
+                       <div class="panel-body">
+                      <p>
+                        <img src="../logoifpe200.png" class="img-circle pull-right"> </p>
+                      <h3 style="text-align: justify;">Arroz da Silva</h3>
+                      <hr> Nasci em Recife e preciso de sangue!!</div>
+                       <div class="panel-body">
+                      <p>
+                        <img src="../logoifpe200.png" class="img-circle pull-right"> </p>
+                      <h3 style="text-align: justify;">Arroz da Silva</h3>
+                      <hr> Nasci em Recife e preciso de sangue!!</div>
+                       <div class="panel-body">
+                      <p>
+                        <img src="../logoifpe200.png" class="img-circle pull-right"> </p>
+                      <h3 style="text-align: justify;">Arroz da Silva</h3>
+                      <hr> Nasci em Recife e preciso de sangue!!</div>
+                       <div class="panel-body">
                       <p>
                         <img src="../logoifpe200.png" class="img-circle pull-right"> </p>
                       <h3 style="text-align: justify;">Arroz da Silva</h3>

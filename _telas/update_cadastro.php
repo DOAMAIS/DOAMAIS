@@ -1,37 +1,41 @@
 <?php
-	include('../_telas/conexao.php');
-
-	$nome = preg_replace('/\s+/', ' ', $_POST['nome']);;
-	$senha = password_hash($_POST["senha"], PASSWORD_DEFAULT);
-	$email = $_POST["email"];
-	$tipo_sanguineo = $_POST["sangue"];
-	$tipoUs = $_POST["tipoUs"];
-	$foto = $_FILES["foto"]["tmp_name"];
-	
-	//var_dump($_FILES);
+  include('conexao.php');
+  session_start();
+  $nome = preg_replace('/\s+/', ' ', $_POST['nome']);;
+  $senha = password_hash($_POST["senha"], PASSWORD_DEFAULT);
+  $email = $_POST["email"];
+  $tipo_sanguineo = $_POST["sangue"];
+  $tipoUs = $_POST["tipoUs"];
+  //$foto = $_FILES["foto"]["tmp_name"];
+  
+  //var_dump($_FILES);
     //var_dump($_POST);
-      define('DEST_DIR', __DIR__ . '/photos');
-        if (isset($_FILES['arquivo']) && !empty($_FILES['arquivo']['name'])) {
-       $arquivo = $_FILES['arquivo'];
-       if (!move_uploaded_file($arquivo['tmp_name'], DEST_DIR . '/' . $arquivo['name'])){
-                $foto = "logoifpe200.png";
+      define('DEST_DIR', __DIR__ . '/photos');  
+        if($_FILES['foto']['name'] == null || $_FILES['foto']['name'] == "") {
+              $foto = $foto_antiga;
+            }    
+          if (isset($_FILES['arquivo']) && !empty($_FILES['arquivo']['name'])){
+              $arquivo = $_FILES['arquivo'];
+       if(!move_uploaded_file($arquivo['tmp_name'], DEST_DIR . '/' . $arquivo['name'])){
+                $foto = $foto_antiga;
           } else {
                  $foto = $arquivo['name'];
           }
- }else $foto = "logoifpe200.png";
-	try{
-	$stmt= $conexao->prepare("insert into usuario(nome,senha,email,tipo_sanguineo,tipo_usuario,foto) values(?,?,?,?,?,?)");
-		$stmt->bindValue(1, $nome);
-	    $stmt->bindValue(2, $senha);
-	    $stmt->bindValue(3, $email);
-	    $stmt->bindValue(4, $tipo_sanguineo);
-	    $stmt->bindValue(5, $tipoUs);
-	    $stmt->bindValue(6, $foto);
-		$stmt->execute();
+ }else $foto = $foto_antiga;
+  try{
+  $stmt= $conexao->prepare("update usuario set nome = ?,senha = ?,email = ?,tipo_sanguineo = ?,tipo_usuario = ?,foto = ? where id=?");
+    $stmt->bindValue(1, $nome);
+      $stmt->bindValue(2, $senha);
+      $stmt->bindValue(3, $email);
+      $stmt->bindValue(4, $tipo_sanguineo);
+      $stmt->bindValue(5, $tipoUs);
+      $stmt->bindValue(6, $foto);
+      $stmt->bindValue(7, $_SESSION['usuario']);
+    $stmt->execute();
 
-	}catch(PDOException $e){
-	 echo $e->getMessage();
-	}
+  }catch(PDOException $e){
+   echo $e->getMessage();
+  }
 ?>
 
 <html>
@@ -40,11 +44,11 @@
   <meta charset="utf-8">
   
   
-  <meta http-equiv="refresh" content="2;URL='login.php'" />
+  <meta http-equiv="refresh" content="2;URL='index.php'"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="../_css/estilo.css"> 
-  <title>Doamais</title>
+  <title>ALTERA DADOS</title>
   </head>
 
 <body>
@@ -88,9 +92,7 @@
           <li class="nav-item active">
             <a class="nav-link" href="inicial.php">Página Inicial <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="cadastro.php">Cadastre-se</a>
-          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="quemsomos.php">Quem somos</a>
           </li>
@@ -114,7 +116,7 @@
                <span class="glyphicon glyphicon-ok"></span> <strong>Mensagem:</strong>
                 <hr class="message-inner-separator">
                 <p>
-                    Cadastro efetuado com sucesso!</p>
+                    Alteração efetuada com sucesso!</p>
             </div>
         </div>
         </div>

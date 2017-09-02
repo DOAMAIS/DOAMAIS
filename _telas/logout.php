@@ -1,39 +1,9 @@
-<?php
-	include('../_telas/conexao.php');
-
-	$nome = preg_replace('/\s+/', ' ', $_POST['nome']);;
-	$senha = password_hash($_POST["senha"], PASSWORD_DEFAULT);
-	$email = $_POST["email"];
-	$tipo_sanguineo = $_POST["sangue"];
-	$tipoUs = $_POST["tipoUs"];
-	$foto = $_FILES["foto"]["tmp_name"];
-	
-	//var_dump($_FILES);
-    //var_dump($_POST);
-      define('DEST_DIR', __DIR__ . '/photos');
-        if (isset($_FILES['arquivo']) && !empty($_FILES['arquivo']['name'])) {
-       $arquivo = $_FILES['arquivo'];
-       if (!move_uploaded_file($arquivo['tmp_name'], DEST_DIR . '/' . $arquivo['name'])){
-                $foto = "logoifpe200.png";
-          } else {
-                 $foto = $arquivo['name'];
-          }
- }else $foto = "logoifpe200.png";
-	try{
-	$stmt= $conexao->prepare("insert into usuario(nome,senha,email,tipo_sanguineo,tipo_usuario,foto) values(?,?,?,?,?,?)");
-		$stmt->bindValue(1, $nome);
-	    $stmt->bindValue(2, $senha);
-	    $stmt->bindValue(3, $email);
-	    $stmt->bindValue(4, $tipo_sanguineo);
-	    $stmt->bindValue(5, $tipoUs);
-	    $stmt->bindValue(6, $foto);
-		$stmt->execute();
-
-	}catch(PDOException $e){
-	 echo $e->getMessage();
-	}
+<?php 
+	session_start();
+	unset($_SESSION);
+	session_destroy();
+	header('Location: login.php');
 ?>
-
 <html>
 
 <head>
@@ -105,21 +75,9 @@
     <div class="row"> </div>
   </div>
   <div class="text-center d-flex h-100 align-items-center" style="background-image: url(&quot;../green-gradient-wallpaper-1.jpg&quot;);">
-    <div class="container">
-      <div class="pull-center" >
-         <div class="col-sm-6 col-md-4 col-md-6" style="margin: auto;">
-            <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                    ×</button>
-               <span class="glyphicon glyphicon-ok"></span> <strong>Mensagem:</strong>
-                <hr class="message-inner-separator">
-                <p>
-                    Cadastro efetuado com sucesso!</p>
-            </div>
-        </div>
-        </div>
-      
-  </div>
+  		<script type="text/javascript">
+  			alert('Saindo...');
+  		</script>
   </div>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
