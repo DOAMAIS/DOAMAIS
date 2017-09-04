@@ -115,9 +115,9 @@
       </li>
     </ul> 
     <label class="w-100 text-left m-1"></label>
-    <ul style="top:5px;" class="nav navbar-nav navbar pull-right">
+    <ul class="nav navbar-nav navbar pull-right">
       <li class="dropdown">
-        <button class="btn btn-success" for="kk"><a id="kk" href="logout.php">Sair</a></button>
+        <a href="logout.php"><button class="btn btn-success">Sair</button></a>
       </li>
     </ul>      
   </div>
