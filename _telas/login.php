@@ -1,6 +1,4 @@
 
-
-
 <html>
 
 <head>
@@ -8,11 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="../_css/estilo.css"> 
-  <title>Doamais</title>
-  </head>
+
+  <title>Entrar</title>
+
+</head>
 
 <body>
   <style>
+  body,html{
+        background: url("../green-gradient-wallpaper-1.jpg") no-repeat center center fixed;
+       -o-background-size: cover;
+       -webkit-background-size: cover;
+       -moz-background-size: cover;
+       background-size: cover;
+  }
   #card {
       max-width: 350px;
       padding: 40px 40px;
@@ -68,7 +75,7 @@
   <div class="container">
     <div class="row"> </div>
   </div>
-  <div class="text-center d-flex h-100 align-items-center" style="background-image: url(&quot;../green-gradient-wallpaper-1.jpg&quot;);">
+  <div class="text-center d-flex h-100 align-items-center">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
