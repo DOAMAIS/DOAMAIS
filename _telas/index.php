@@ -146,7 +146,7 @@
                     <option value="O+">O+</option>
                     <option value="O-">O-</option>
                   </select> <br> <br>
-                <button type="submit" class="btn" id="botao">Enviar</button> </form>              
+                <button type="submit" class="btn" id="botao">Pesquisar</button> </form>              
               </div>
             </div>
           </div> 
