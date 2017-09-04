@@ -1,5 +1,4 @@
 
-
 <html>
 
 <head>
@@ -11,8 +10,8 @@
   <meta name="generator" content="Bootply">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link href="css/bootstrap.min.css" rel="stylesheet">  
-	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<link href="css/styles.css" rel="stylesheet"> 
+  <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <link href="css/styles.css" rel="stylesheet"> 
   <script src="ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/scripts.js"></script>
@@ -75,8 +74,8 @@
       display: ;
     }
     table,th,tr,td{
-      border-collapse: collapse;
-       border: 1px solid red;
+        border-radius: 10px;
+
        width: ;
        text-align: center;
        background-color: white;
@@ -97,6 +96,21 @@
               <ul class="nav navbar-nav">
                 <li>
                   <a href="index.php"> Página Inicial</a>
+                </li>
+              </ul>
+              <ul class="nav navbar-nav navbar">
+                <li class="dropdown">
+                  <a href="consulta_doador.php">Consultar doador</a>  
+                </li>
+              </ul>
+              <ul class="nav navbar-nav navbar">
+                <li class="dropdown">
+                  <a href="altera_cadastro.php">Alterar Dados</a>  
+                </li>
+              </ul> 
+              <ul class="nav navbar-nav navbar pull-right" style="height: 30px">
+                <li class="dropdown">
+                  <a href="logout.php"><button class="btn">Sair</button></a>
                 </li>
               </ul>
               
@@ -126,7 +140,7 @@
 <br>
 <br>
 
-<table width="70%">
+<table class="table table-bordered" width="70%">
               <tr>
                 <th>Nome</th>
                 <th>Email</th>

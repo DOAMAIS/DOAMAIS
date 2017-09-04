@@ -34,42 +34,6 @@
 	}
 ?>
 
-<?php
-	include('../_telas/conexao.php');
-
-	$nome = preg_replace('/\s+/', ' ', $_POST['nome']);;
-	$senha = password_hash($_POST["senha"], PASSWORD_DEFAULT);
-	$email = $_POST["email"];
-	$tipo_sanguineo = $_POST["sangue"];
-	$tipoUs = $_POST["tipoUs"];
-	$foto = $_FILES["foto"]["tmp_name"];
-	
-	//var_dump($_FILES);
-    //var_dump($_POST);
-      define('DEST_DIR', __DIR__ . '/photos');
-        if (isset($_FILES['arquivo']) && !empty($_FILES['arquivo']['name'])) {
-       $arquivo = $_FILES['arquivo'];
-       if (!move_uploaded_file($arquivo['tmp_name'], DEST_DIR . '/' . $arquivo['name'])){
-                $foto = "logoifpe200.png";
-          } else {
-                 $foto = $arquivo['name'];
-          }
- }else $foto = "logoifpe200.png";
-	try{
-	$stmt= $conexao->prepare("insert into usuario(nome,senha,email,tipo_sanguineo,tipo_usuario,foto) values(?,?,?,?,?,?)");
-		$stmt->bindValue(1, $nome);
-	    $stmt->bindValue(2, $senha);
-	    $stmt->bindValue(3, $email);
-	    $stmt->bindValue(4, $tipo_sanguineo);
-	    $stmt->bindValue(5, $tipoUs);
-	    $stmt->bindValue(6, $foto);
-		$stmt->execute();
-
-	}catch(PDOException $e){
-	 echo $e->getMessage();
-	}
-?>
-
 <html>
 
 <head>

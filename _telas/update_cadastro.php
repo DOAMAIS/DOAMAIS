@@ -90,7 +90,7 @@
       <div class="collapse navbar-collapse text-center justify-content-center" id="navbar2SupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="inicial.php">Página Inicial <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.php">Página Inicial <span class="sr-only">(current)</span></a>
           </li>
 
           <li class="nav-item">

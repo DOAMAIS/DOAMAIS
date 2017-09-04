@@ -4,9 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="../_css/estilo.css">
-    <title>Doamais</title>
-   </head>
+  <link rel="stylesheet" href="../_css/estilo.css"> </head>
+
 <body>
   <style>
     #menu {
@@ -41,6 +40,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="cadastro.php">Cadastre-se</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.php">Entrar</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="quemsomos.php">Quem somos</a>

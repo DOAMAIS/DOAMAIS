@@ -178,7 +178,7 @@
 </div>
                   <div class="panel-body">
                     <div class="pull-right">
-                      <img class="img-circle" src="/_telas/photos/<?php echo $foto_perfil; ?>" />
+                      <img class="img-circle" src="../_telas/photos/<?php echo $foto_perfil; ?>" />
                               <!-- badge -->
                               <div class="rank-label-container">
                                 <span class="label label-default rank-label">Tipo: <?php echo $tiposanguineo;?> </span>
