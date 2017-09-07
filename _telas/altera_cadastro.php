@@ -137,11 +137,11 @@ function letras(){
           <li class="nav-item active">
             <a class="nav-link" href="index.php">Página Inicial<span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="consulta_doador.php">Consultar doador</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="quemsomoslogged.php">Quem somos</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="altera_senha.php">Alterar senha</a>
           </li>
         </ul>
      <ul class="nav navbar-nav navbar pull-right" style="top: -10px;">
