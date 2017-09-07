@@ -3,7 +3,7 @@
      if(!isset($_SESSION['usuario'])){
          header('Location: login.php');
      }
-      $conexao = new PDO('mysql:host=localhost;dbname=DOAMAIS', 'root', '@luno1fpe');
+      include('conexao.php');
       $stmt= $conexao->prepare("select * from usuario where id=?");
       $stmt->bindValue(1, $_SESSION["usuario"]);
       $stmt->execute();
@@ -20,7 +20,6 @@
                                 $depoimento = $linha["depoimento"];
                                 }
 ?>
-
 <html>
 
 <head>
@@ -94,33 +93,41 @@
   <div class="column col-sm-12 col-xs-11" id="main">
 
   <!-- barra de navegação -->
-  <div class="navbar navbar navbar-static-top" id="nav_cor">
-    <div class="navbar-header" id="nav_cor">
-      <img src="pica.png" id="imagem_logo">
-    </div>  
-    <ul class="nav navbar-nav">
-      <li>
-        <a href="index.php">Página Inicial</a>
-      </li>
-    </ul>
-      
-    <ul class="nav navbar-nav navbar">
-      <li class="dropdown">
-        <a href="consulta_doador.php">Consultar doador</a>  
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar">
-      <li class="dropdown">
-        <a href="altera_cadastro.php">Alterar Dados</a>  
-      </li>
-    </ul> 
-    <label class="w-100 text-left m-1"></label>
-    <ul class="nav navbar-nav navbar pull-right">
-      <li class="dropdown">
-        <a href="logout.php"><button class="btn btn-success">Sair</button></a>
-      </li>
-    </ul>      
-  </div>
+    <div class="navbar navbar navbar-static-top" id="nav_cor">
+      <div class="navbar-header" id="nav_cor">
+      <span class="icon-bar "></span> <span class="icon-bar"></span> <span class="icon-bar"></span> 
+
+            <img src="pica.png" id="imagem_logo">
+            </div>
+            
+              <ul class="nav navbar-nav">
+                <li>
+                  <a href="index.php"> Página Inicial</a>
+                </li>
+              </ul>
+              <ul class="nav navbar-nav navbar">
+                <li class="dropdown">
+                  <a href="consulta_doador.php">Consultar doador</a>  
+                </li>
+              </ul>
+              <ul class="nav navbar-nav navbar">
+                <li class="dropdown">
+                  <a href="altera_cadastro.php">Alterar Dados</a>  
+                </li>
+              </ul> 
+              <ul class="nav navbar-nav navbar">
+                <li class="dropdown">
+                  <a href="altera_senha.php">Alterar Senha</a>  
+                </li>
+              </ul> 
+              <ul class="nav navbar-nav navbar pull-right" style="height: 30px; margin-top: -10px">
+                <li class="dropdown">
+                  <a href="logout.php"><button class="btn btn-success">Sair</button></a>
+                </li>
+              </ul>
+              
+            </nav>
+    </div>
   <!-- /barra de navegação -->
 
   <!-- main coluna esquerda -->    
@@ -146,7 +153,7 @@
                     <option value="O+">O+</option>
                     <option value="O-">O-</option>
                   </select> <br> <br>
-                <button type="submit" class="btn" id="botao">Pesquisar</button> </form>              
+                <button type="submit" class="btn" id="botao">Enviar</button> </form>              
               </div>
             </div>
           </div> 
@@ -188,17 +195,19 @@
           
                        
                                
-                        <h3><?php
-                                echo $nome;
-                            ?></h3>
+                        <h3>
+                          <?php
+                            echo $nome;
+                          ?>
+                        </h3>
                         
-                      <hr> <?php
-                              if($depoimento!=null)
-                                echo $depoimento;
-                              else
-                                echo "Sem depoimento";
-
-                            ?>
+                      <hr> 
+                      <?php
+                        if($depoimento!=null)
+                          echo $depoimento;
+                        else
+                         echo "Sem depoimento";
+                      ?>
                       </div>
                       <br> 
 
@@ -207,34 +216,33 @@
             <!-- /coluna direita ver depoimento recente -->
 
                       <div style="height: 300px; overflow: auto;" class="panel panel-default">
-                      <div class="panel-heading">
-                      <h4>Depoimentos &amp; Histórias</h4>
-                      </div>
-                      <div class="panel-body">
-                      <p>
-                        <img src="../logoifpe200.png" class="img-circle pull-right"> </p>
-                      <h3 style="text-align: justify;">Arroz da Silva</h3>
-                      <hr> Nasci em Recife e preciso de sangue!!</div>
-                       <div class="panel-body">
-                      <p>
-                        <img src="../logoifpe200.png" class="img-circle pull-right"> </p>
-                      <h3 style="text-align: justify;">Arroz da Silva</h3>
-                      <hr> Nasci em Recife e preciso de sangue!!</div>
-                       <div class="panel-body">
-                      <p>
-                        <img src="../logoifpe200.png" class="img-circle pull-right"> </p>
-                      <h3 style="text-align: justify;">Arroz da Silva</h3>
-                      <hr> Nasci em Recife e preciso de sangue!!</div>
-                       <div class="panel-body">
-                      <p>
-                        <img src="../logoifpe200.png" class="img-circle pull-right"> </p>
-                      <h3 style="text-align: justify;">Arroz da Silva</h3>
-                      <hr> Nasci em Recife e preciso de sangue!!</div>
-                       <div class="panel-body">
-                      <p>
-                        <img src="../logoifpe200.png" class="img-circle pull-right"> </p>
-                      <h3 style="text-align: justify;">Arroz da Silva</h3>
-                      <hr> Nasci em Recife e preciso de sangue!!</div>
+                       <div class="panel-heading">
+                        <h4>Depoimentos &amp; Histórias</h4>
+                        </div>
+                      <?php
+                        include('conexao.php');
+                         $stmt = $conexao->prepare("select nome, tipo_sanguineo, foto, depoimento from usuario, depoimento WHERE usuario.id=depoimento.id_usuario and usuario.id!=?");
+                         $stmt->bindValue(1, $_SESSION["usuario"]);
+                           $stmt->execute();
+                              foreach ($stmt as $linha){
+                                echo "
+                                      <div class='panel-body'>
+                                      <div class='pull-right'>
+                                        <img class='img-circle' src=".$linha['foto']." />
+                                        <div class='rank-label-container'>
+                                        <span class='label label-default rank-label'>Tipo: ".$linha['tipo_sanguineo']."</span></div></div>
+                                      <h3 style='text-align: justify'>".$linha['nome']."</h3>
+                                      <hr>".$linha['depoimento']." </div>";
+                              }
+                      ?>
+                     
+                        <div class="panel-body">
+                        <div class="pull-right">
+                          <img class="img-circle" src="../logoifpe200.png" />
+                          <div class="rank-label-container">
+                          <span class="label label-default rank-label">Tipo: B+ </span></div></div>
+                        <h3 style="text-align: justify;">José da Silva</h3>
+                        <hr>Nasci em Recife e preciso de sangue porque fui diagnosticado com leucemia. </div>
                   </div>
                 </div>
                 <!--/row-->

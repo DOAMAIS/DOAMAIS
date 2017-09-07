@@ -1,6 +1,11 @@
 
 <html>
-
+<?php
+     session_start();
+     if(!isset($_SESSION['usuario'])){
+         header('Location: login.php');
+     }
+?>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
@@ -108,9 +113,14 @@
                   <a href="altera_cadastro.php">Alterar Dados</a>  
                 </li>
               </ul> 
-              <ul class="nav navbar-nav navbar pull-right" style="height: 30px">
+              <ul class="nav navbar-nav navbar">
                 <li class="dropdown">
-                  <a href="logout.php"><button class="btn">Sair</button></a>
+                  <a href="altera_senha.php">Alterar Senha</a>  
+                </li>
+              </ul> 
+              <ul class="nav navbar-nav navbar pull-right" style="height: 30px; margin-top: -10px">
+                <li class="dropdown">
+                  <a href="logout.php"><button class="btn btn-success">Sair</button></a>
                 </li>
               </ul>
               

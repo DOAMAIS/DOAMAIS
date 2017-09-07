@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="../_css/estilo.css">
-  <title>Alterar dados</title>
+  <title>Alterar Senha</title>
 
     <style>
     select {
@@ -160,34 +160,15 @@ function letras(){
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-       <form action="update_cadastro.php" method="POST" enctype="multipart/form-data" onsubmit="return verificaSenha();">
+       <form action="update_senha.php" method="POST" onsubmit="return verificaSenha();">
           <div id="card">
             <div class="imagem">
               <img src="../_telas/photos/<?php echo $foto_perfil; ?>" class="rounded-circle img-fluid mx-auto d-block"> </div>
             <div class="form-campos"> <label class="w-100 text-left m-1"></label>
-            <div class="fileUpload btn" style="background-color:#277554; color: white; width: 220px;">
-               <span>Escolha sua foto</span>
-               <input type="file" class="upload" id="foto" name="arquivo" placeholder="Escolha sua foto" accept="image/*">
-            </div>
-              <input type="text" class="form-control" placeholder="Nome" name="nome" value="<?php echo $nome; ?>" onkeypress="return letras();" required> </div>
-            <div class="form-campos"> <label class="text-left w-100 m-1" ></label>
-              <input type="email" class="form-control" placeholder="Email" name="email" value="<?php echo $email; ?>" required> </div>
+              <input type="password" class="form-control" placeholder="Nova senha" name="senha" id="senha" onkeypress="verifySenha();" required> </div>
+            <div class="form-campos"> <label class="w-100 text-left m-1" id="senha0"></label>
+              <input type="password" class="form-control" placeholder="Confirme a nova senha" name="senha1" id="confSenha" required> </div>
            <label class="w-100 text-left m-1"></label>
-            <div class="form-tipo"> <label class="w-100 text-left m-1"></label>
-           <select name="sangue" required>
-              <option value="">Selecione seu tipo sanguíneo</option>
-              <option value="A+" <?php select($tipo_sanguineo,"A+"); ?>>A+</option>
-              <option value="A-" <?php select($tipo_sanguineo,"A-"); ?>>A-</option>
-              <option value="B+" <?php select($tipo_sanguineo,"B+"); ?>>B+</option>
-              <option value="B-" <?php select($tipo_sanguineo,"B-"); ?>>B-</option>
-              <option value="AB+" <?php select($tipo_sanguineo,"AB+"); ?>>AB+</option>
-              <option value="AB-" <?php select($tipo_sanguineo,"AB-"); ?>>AB-</option>
-              <option value="O+" <?php select($tipo_sanguineo,"O+"); ?>>O+</option>
-              <option value="O-" <?php select($tipo_sanguineo,"O-"); ?>>O-</option>
-            </select><br/><label class="w-100 text-left m-1"></label>
-              <input type="radio" value="D" id="D" name="tipoUs" <?php check($tipoUs,"D"); ?> required><label for="D" class="radio">Doador</label>
-              &nbsp;
-              <input type="radio" value="R" id="R" name="tipoUs" <?php check($tipoUs,"R"); ?> required><label for="R" class="radio">Receptor</label> </div> 
           
             <br>
             <br>

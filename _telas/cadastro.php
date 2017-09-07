@@ -163,6 +163,7 @@ function letras(){
             <br>
             <a href="login.php">Já tem conta? Faça login</a>
           </form>
+          </div>
         </div>
       </div>
     </div>

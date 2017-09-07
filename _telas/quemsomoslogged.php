@@ -28,16 +28,16 @@
       <div class="collapse navbar-collapse text-center justify-content-center" id="navbar2SupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="inicial.php">Página Inicial <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.php">Página Inicial <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="cadastro.php">Cadastre-se</a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="login.php">Entrar</a>
+          <li class="nav-item">
+            <a class="nav-link" href="quemsomos.php">Quem somos</a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#"></a>
+          <li class="dropdown">
+            <a href="logout.php"><button class="btn btn-success">Sair</button></a>
           </li>
         </ul>
       </div>

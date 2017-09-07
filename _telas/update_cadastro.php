@@ -1,8 +1,11 @@
 <?php
   include('conexao.php');
   session_start();
+       if(!isset($_SESSION['usuario'])){
+         header('Location: login.php');
+     }
   $nome = preg_replace('/\s+/', ' ', $_POST['nome']);;
-  $senha = password_hash($_POST["senha"], PASSWORD_DEFAULT);
+  //$senha = password_hash($_POST["senha"], PASSWORD_DEFAULT);
   $email = $_POST["email"];
   $tipo_sanguineo = $_POST["sangue"];
   $tipoUs = $_POST["tipoUs"];
@@ -23,14 +26,13 @@
           }
  }else $foto = $foto_antiga;
   try{
-  $stmt= $conexao->prepare("update usuario set nome = ?,senha = ?,email = ?,tipo_sanguineo = ?,tipo_usuario = ?,foto = ? where id=?");
+  $stmt= $conexao->prepare("update usuario set nome = ?,email = ?,tipo_sanguineo = ?,tipo_usuario = ?,foto = ? where id=?");
     $stmt->bindValue(1, $nome);
-      $stmt->bindValue(2, $senha);
-      $stmt->bindValue(3, $email);
-      $stmt->bindValue(4, $tipo_sanguineo);
-      $stmt->bindValue(5, $tipoUs);
-      $stmt->bindValue(6, $foto);
-      $stmt->bindValue(7, $_SESSION['usuario']);
+      $stmt->bindValue(2, $email);
+      $stmt->bindValue(3, $tipo_sanguineo);
+      $stmt->bindValue(4, $tipoUs);
+      $stmt->bindValue(5, $foto);
+      $stmt->bindValue(6, $_SESSION['usuario']);
     $stmt->execute();
 
   }catch(PDOException $e){

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="../_css/estilo.css"> </head>
-
+  <title>Apresentação</title>
 <body>
   <style>
     #menu {
@@ -36,7 +36,7 @@
       <div class="collapse navbar-collapse text-center justify-content-center" id="navbar2SupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="inicial.php">Página Inicial <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="inicial.php">Página Inicial<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="cadastro.php">Cadastre-se</a>
