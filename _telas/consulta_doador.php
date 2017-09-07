@@ -159,7 +159,7 @@
 <?php
    include 'conexao.php'; 
     $tipo_sanguineo= $_GET["tipo_sanguineo"];
-    $stmt = $conexao->prepare("select nome,email from usuario where tipo_sanguineo=?");  
+    $stmt = $conexao->prepare("select nome,email from usuario where tipo_sanguineo=? and tipo_usuario='D'");  
                  $stmt->bindValue(1,$tipo_sanguineo);
                   $stmt->execute();
                   $resultado = $stmt->fetchAll();
