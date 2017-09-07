@@ -22,7 +22,7 @@
 			   	    header('Location: ../_telas/login.php?msg=true');
 			   }
 		   }else{
-		   	  header('Location: ../telas/login.php?msg=true');
+		   	  header('Location: ../_telas/login.php?msg=true');
 		   }
 		   
 	}catch(PDOException $e){
