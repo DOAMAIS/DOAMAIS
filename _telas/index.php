@@ -120,6 +120,11 @@
                   <a href="altera_senha.php">Alterar Senha</a>  
                 </li>
               </ul> 
+              <ul class="nav navbar-nav navbar">
+                <li class="dropdown">
+                  <a href="postocoleta.php">Onde doar?</a>  
+                </li>
+              </ul> 
               <ul class="nav navbar-nav navbar pull-right" style="height: 30px; margin-top: -10px">
                 <li class="dropdown">
                   <a href="logout.php"><button class="btn btn-success">Sair</button></a>
@@ -228,7 +233,7 @@
                                 echo "
                                       <div class='panel-body'>
                                       <div class='pull-right'>
-                                        <img class='img-circle' src=".$linha['foto']." />
+                                        <img class='img-circle' src=photos/".$linha['foto']." />
                                         <div class='rank-label-container'>
                                         <span class='label label-default rank-label'>Tipo: ".$linha['tipo_sanguineo']."</span></div></div>
                                       <h3 style='text-align: justify'>".$linha['nome']."</h3>
